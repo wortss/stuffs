@@ -1,6 +1,7 @@
 local Helpers = {}
 
 function Helpers:GetPlayerByString(str)
+	if str == "me" then return game.Players.LocalPlayer end
 	local found = false
 	str = str:lower()
 	local length = str:len()

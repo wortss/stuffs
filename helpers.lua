@@ -60,7 +60,7 @@ function Helpers:SafelyTeleportMe(CF)
 	
 	local Dist = (CF.Position - Character:GetPivot().Position).Magnitude
 	
-	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(Dist / math.random(30,40)), {
+	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(Dist / 100), {
 		CFrame = CF
 	})
 	TeleportTween:Play()

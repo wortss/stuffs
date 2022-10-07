@@ -38,7 +38,10 @@ function Helpers:FindPlayerByString(str)
 end
 
 function Helpers:SafelyTeleportMe(CF)
-	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(math.random(5,10)), {
+	
+	local Dist = (CF.Position - Character:GetPivot().Position).Magnitude
+	
+	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(Dist / math.random(30,40)), {
 		CFrame = CF
 	})
 	TeleportTween:Play()

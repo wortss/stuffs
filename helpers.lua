@@ -1,6 +1,6 @@
 local Helpers = {}
 
-function Helpers:FindPlayerByString(str)
+function Helpers:GetPlayerByString(str)
 	local found = false
 	str = str:lower()
 	local length = str:len()

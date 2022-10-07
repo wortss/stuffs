@@ -1,5 +1,9 @@
 local Helpers = {}
 
+local Ores = {"granite","stone","sand","iron","gold","silver","copper","marble","crystal","emerald","sapphire","ruby","amethyst","obsidian","opal","mythril","oddius","cloudnite","sun stone","volcanium"
+}
+
+
 local Player = game.Players.LocalPlayer
 local Character = Player.Character or Player.CharacterAdded:Wait()
 
@@ -35,6 +39,21 @@ function Helpers:FindPlayerByString(str)
 
 	return found
 	
+end
+
+function Helpers:GetOreByString(str)
+	local found = false
+	str = str:lower()
+	local length = str:len()
+
+	for _,ore in pairs(Ores) do
+		if ore:sub(1, length):lower() == str then
+			found = ore
+			break
+		end
+	end
+	
+	return found
 end
 
 function Helpers:SafelyTeleportMe(CF)

@@ -1,27 +1,50 @@
 local Helpers = {}
 
-function Helpers:GetPlayerByString(str)
-	if str == "me" then return game.Players.LocalPlayer end
+local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+
+Player.CharacterAdded:Connect(function(char)
+	Character = char
+end)
+
+local TweenService = game:GetService("TweenService")
+
+function Helpers:FindPlayerByString(str)
+	if str == "me" then return Player end
 	local found = false
 	str = str:lower()
 	local length = str:len()
 
-	for _,v in pairs(game.Players:GetPlayers()) do
-		if v.Name:sub(1, length):lower() == str then
-			found = v
-			break    
+	for _,plr in pairs(game.Players:GetPlayers()) do
+		if plr.Name:sub(1, length):lower() == str then
+			found = plr
+			break
 		end
 	end
-
-	for _,v in pairs(game.Players:GetPlayers()) do
-		if v.DisplayName:sub(1, length):lower() == str then
-			found = v
-			break    
+	
+	if not found then
+		
+		for _,plr in pairs(game.Players:GetPlayers()) do
+			if plr.DisplayName:sub(1, length):lower() == str then
+				found = plr
+				break
+			end
 		end
+		
 	end
 
 	return found
 	
+end
+
+function Helpers:SafelyTeleportMe(CF)
+	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(math.random(5,10)), {
+		CFrame = CF
+	})
+	TeleportTween:Play()
+	TeleportTween.Completed:Wait()
+	TeleportTween:Destroy()
+	return
 end
 
 

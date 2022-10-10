@@ -58,22 +58,15 @@ end
 
 function Helpers:SafelyTeleportMe(CF)
 	
-	--[[local Dist = (CF.Position - Character:GetPivot().Position).Magnitude
+	local Dist = (CF.Position - Character:GetPivot().Position).Magnitude
 	
-	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(Dist / 100), {
+	local TeleportTween = TweenService:Create(Character.HumanoidRootPart, TweenInfo.new(Dist / 175), {
 		CFrame = CF
 	})
 	TeleportTween:Play()
 	TeleportTween.Completed:Wait()
 	TeleportTween:Destroy()
-	return]]
-	
-	local bodyPos = Instance.new("BodyPosition")
-	bodyPos.Position = CF.Position
-	bodyPos.D = 90
-	bodyPos.Parent = Character.HumanoidRootPart
-	bodyPos.ReachedTarget:Wait()
-	bodyPos:Destroy()
+	return
 end
 
 
